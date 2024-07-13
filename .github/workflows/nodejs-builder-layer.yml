@@ -20,6 +20,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }} # or '20.x' depending on your project
         registry-url: https://registry.npmjs.org
+   
+    - name: Install dependencies
+      run: npm install
+      
     - name: prepare layer directory
       run: |
           mkdir -p layer/nodejs
