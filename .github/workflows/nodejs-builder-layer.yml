@@ -1,0 +1,39 @@
+name: AWS Lambda Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version: ${{ matrix.node-version }}' # or '20.x' depending on your project
+        registry-url: https://registry.npmjs.org
+    - name: prepare layer directory
+      run: |
+          mkdir -p layer/nodejs
+          cp -r node_modules layer/nodejs/
+          cp package.json layer/nodejs/
+          cp package-lock.json layer/nodejs/
+
+    - name: Package Lambda layer
+      run: cd layer && zip -r ../nodejs${{ matrix.node-version }}-layer.zip . && cd ..
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: nodejs${{ matrix.node-version }}-layer
+        path: nodejs${{ matrix.node-version }}-layer.zip
+  
+          
