@@ -18,7 +18,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.3
       with:
-        node-version: ${{ matrix.node-version }}' # or '20.x' depending on your project
+        node-version: ${{ matrix.node-version }} # or '20.x' depending on your project
         registry-url: https://registry.npmjs.org
     - name: prepare layer directory
       run: |
