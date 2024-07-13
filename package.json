@@ -1,0 +1,38 @@
+{
+  "name": "socket-service",
+  "version": "1.0.0",
+  "description": "Socket Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand --forceExit --verbose --detectOpenHandles --coverage",
+    "sonar": "sonar-scanner",
+      "build": "sls package",
+      "start": "sls offline"
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "test-report.xml",
+    "indent": 4
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk-mock": "^5.1.0",
+    "exceljs": "^4.3.0",
+    "fs": "0.0.1-security",
+    "jwt-decode": "^3.1.2",
+    "lambda-log": "^2.4.0",
+    "path": "^0.12.7",
+    "swagger-ui-express": "^4.5.0",
+    "webpack": "^4.46.0",
+    "webpack-node-externals": "1.7.2",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.4.2",
+    "jest-sonar-reporter": "^2.0.0",
+    "serverless-deployment-bucket": "^1.6.0",
+    "serverless-offline": "^12.0.4",
+    "sonar-scanner": "^3.1.0"
+  }
+}
